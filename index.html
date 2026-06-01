@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Life Tracker Pro</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+/>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="app-container">
+
+<header class="topbar">
+
+<div class="logo-section">
+<i class="fa-solid fa-chart-line"></i>
+<h1>Life Tracker Pro</h1>
+</div>
+
+<div class="top-actions">
+
+<button id="themeBtn">
+<i class="fa-solid fa-moon"></i>
+</button>
+
+</div>
+
+</header>
+
+<section class="welcome-card glass">
+
+<h2>Hello 👋</h2>
+
+<p>
+Track your productivity and expenses
+in one place.
+</p>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="card glass">
+
+<h3>Today Tasks</h3>
+
+<div id="todayTasks">
+0
+</div>
+
+</div>
+
+<div class="card glass">
+
+<h3>Pending</h3>
+
+<div id="pendingTasks">
+0
+</div>
+
+</div>
+
+<div class="card glass">
+
+<h3>Completed</h3>
+
+<div id="completedTasks">
+0
+</div>
+
+</div>
+
+<div class="card glass">
+
+<h3>Failed</h3>
+
+<div id="failedTasks">
+0
+</div>
+
+</div>
+
+<div class="card glass">
+
+<h3>Weekly Progress</h3>
+
+<div id="weeklyProgress">
+0%
+</div>
+
+</div>
+
+<div class="card glass">
+
+<h3>Monthly Progress</h3>
+
+<div id="monthlyProgress">
+0%
+</div>
+
+</div>
+
+<div class="card glass expense-card">
+
+<h3>Today's Expense</h3>
+
+<div id="todayExpense">
+₹0
+</div>
+
+</div>
+
+</section>
+
+<section class="glass productivity-section">
+
+<h2>Today's Productivity</h2>
+
+<div class="progress-circle">
+
+<svg>
+
+<circle
+cx="90"
+cy="90"
+r="70">
+</circle>
+
+<circle
+cx="90"
+cy="90"
+r="70"
+id="progressRing">
+</circle>
+
+</svg>
+
+<div id="productivityPercent">
+0%
+</div>
+
+</div>
+
+<div id="motivationText">
+
+Let's start strong 💪
+
+</div>
+
+</section>
+
+<section class="glass">
+
+<h2>Todo Management</h2>
+
+<form id="taskForm">
+
+<input
+type="text"
+id="taskName"
+placeholder="Task Name"
+required
+>
+
+<textarea
+id="taskDescription"
+placeholder="Description"
+></textarea>
+
+<select id="taskCategory">
+
+<option>Work</option>
+<option>Personal</option>
+<option>Health</option>
+<option>Finance</option>
+<option>Family</option>
+<option>Other</option>
+
+</select>
+
+<input
+type="date"
+id="taskDate"
+required
+>
+
+<input
+type="time"
+id="taskTime"
+required
+>
+
+<button type="submit">
+
+Add Task
+
+</button>
+
+</form>
+
+</section>
+
+<section class="glass">
+
+<h2>Task Filters</h2>
+
+<div class="filter-row">
+
+<select id="filterStatus">
+
+<option value="">
+All Status
+</option>
+
+<option>
+Pending
+</option>
+
+<option>
+Passed
+</option>
+
+<option>
+Failed
+</option>
+
+</select>
+
+<select id="filterPeriod">
+
+<option value="today">
+Today
+</option>
+
+<option value="2">
+Last 2 Days
+</option>
+
+<option value="3">
+Last 3 Days
+</option>
+
+<option value="4">
+Last 4 Days
+</option>
+
+<option value="5">
+Last 5 Days
+</option>
+
+<option value="6">
+Last 6 Days
+</option>
+
+<option value="week">
+This Week
+</option>
+
+</select>
+
+<input
+type="text"
+id="taskSearch"
+placeholder="Search Tasks"
+>
+
+</div>
+
+</section>
+
+<section class="glass">
+
+<h2>Tasks List</h2>
+
+<div id="taskContainer">
+
+</div>
+
+</section>
+
+<section class="glass">
+
+<h2>Expense Tracker</h2>
+
+<form id="expenseForm">
+
+<input
+type="date"
+id="expenseDate"
+required
+>
+
+<input
+type="text"
+id="expensePurpose"
+placeholder="Purpose"
+required
+>
+
+<input
+type="number"
+id="expenseAmount"
+placeholder="Amount"
+required
+>
+
+<select id="expenseCategory">
+
+<option>Food</option>
+
+<option>Health</option>
+
+<option>Transport</option>
+
+<option>Shopping</option>
+
+<option>Bills</option>
+
+<option>Entertainment</option>
+
+<option>Education</option>
+
+<option>Investment</option>
+
+<option>Family</option>
+
+<option>Other</option>
+
+</select>
+
+<textarea
+id="expenseNotes"
+placeholder="Notes"
+></textarea>
+
+<button type="submit">
+
+Add Expense
+
+</button>
+
+</form>
+
+</section>
+
+<section class="glass">
+
+<h2>Expense Summary</h2>
+
+<div class="expense-summary">
+
+<div>
+
+Today:
+<span id="expenseToday">
+
+₹0
+
+</span>
+
+</div>
+
+<div>
+
+Week:
+<span id="expenseWeek">
+
+₹0
+
+</span>
+
+</div>
+
+<div>
+
+Month:
+<span id="expenseMonth">
+
+₹0
+
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="glass chart-section">
+
+<h2>Expense Analytics</h2>
+
+<canvas id="expensePieChart"></canvas>
+
+</section>
+
+<section class="glass chart-section">
+
+<h2>Monthly Expenses</h2>
+
+<canvas id="expenseBarChart"></canvas>
+
+</section>
+
+<section class="glass chart-section">
+
+<h2>Productivity Analytics</h2>
+
+<canvas id="productivityChart"></canvas>
+
+</section>
+
+<button
+class="fab"
+id="fabButton">
+
+<i class="fa-solid fa-plus"></i>
+
+</button>
+
+<nav class="bottom-nav">
+
+<button>
+
+<i class="fa-solid fa-house"></i>
+
+<span>
+Dashboard
+</span>
+
+</button>
+
+<button>
+
+<i class="fa-solid fa-list-check"></i>
+
+<span>
+Tasks
+</span>
+
+</button>
+
+<button>
+
+<i class="fa-solid fa-wallet"></i>
+
+<span>
+Expenses
+</span>
+
+</button>
+
+<button>
+
+<i class="fa-solid fa-chart-pie"></i>
+
+<span>
+Analytics
+</span>
+
+</button>
+
+</nav>
+
+<div id="toastContainer">
+
+</div>
+
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
