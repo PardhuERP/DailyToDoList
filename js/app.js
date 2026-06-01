@@ -329,9 +329,9 @@ ${task.description || ""}
 
 </span>
 
-<span class="badge ${task.status.toLowerCase()}">
+<span class="badge ${(task.status || "Pending").toLowerCase()}">
 
-${task.status}
+${task.status || "Pending"}
 
 </span>
 
