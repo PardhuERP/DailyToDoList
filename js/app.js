@@ -2414,7 +2414,7 @@ throw error;
    LOAD TASKS
 ========================== */
 
-async function loadTasksFromServer(){
+/*async function loadTasksFromServer(){
 
 try{
 
@@ -2447,7 +2447,7 @@ console.error(error);
    LOAD EXPENSES
 ========================== */
 
-async function loadExpensesFromServer(){
+/*async function loadExpensesFromServer(){
 
 const response =
 await fetch(
@@ -2980,15 +2980,11 @@ window.addEventListener(
 
 "load",
 
-async ()=>{
+()=>{
 
 showToast(
 "Life Tracker Pro Ready"
 );
-
-await loadTasksFromServer();
-
-await loadExpensesFromServer();
 
 updateDashboard();
 
@@ -2998,15 +2994,11 @@ renderExpenseList();
 
 loadCharts();
 
-syncOfflineQueue();
-
 }
 
 );
 
-console.log(
-"Life Tracker Pro Part-4 Loaded"
-);
+
 
 function jsonResponse(obj){
 
