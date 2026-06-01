@@ -123,10 +123,14 @@ CONFIG.STORAGE_KEYS.EXPENSES
 
 function generateId(){
 
-return
+return (
+
 Date.now().toString() +
+
 Math.floor(
 Math.random()*1000
+)
+
 );
 
 }
