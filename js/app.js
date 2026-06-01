@@ -11,7 +11,7 @@
 const CONFIG = {
 
 API_URL:
-"https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec",
+"https://script.google.com/macros/s/AKfycbxXXBfs-j4AsexBRWnMb8-5RK96bB4LPPSUF8mI0j449K2aXGxiD4fO17CWCi_xwFwD/exec",
 
 AUTO_FAIL_INTERVAL: 60000,
 
