@@ -1,4 +1,4 @@
-/* ======================================
+L/* ======================================
    LIFE TRACKER PRO
    APP.JS - PART 1
    CONFIG + TASKS + EXPENSES
