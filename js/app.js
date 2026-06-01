@@ -2418,31 +2418,21 @@ async function loadTasksFromServer(){
 
 try{
 
-showToast(
-"Loading Tasks..."
+const response =
+await fetch(
+CONFIG.API_URL +
+"?action=getTasks"
 );
 
 const result =
-await apiRequest(
-"getTasks"
-);
-
-if(result.success){
+await response.json();
 
 tasks =
 result.data || [];
 
-saveLocalData();
-
 renderTasks();
 
 updateDashboard();
-
-showToast(
-"Tasks Loaded"
-);
-
-}
 
 }
 catch(error){
@@ -2459,42 +2449,23 @@ console.error(error);
 
 async function loadExpensesFromServer(){
 
-try{
-
-showToast(
-"Loading Expenses..."
+const response =
+await fetch(
+CONFIG.API_URL +
+"?action=getExpenses"
 );
 
 const result =
-await apiRequest(
-"getExpenses"
-);
-
-if(result.success){
+await response.json();
 
 expenses =
 result.data || [];
-
-saveLocalData();
 
 renderExpenseList();
 
 updateDashboard();
 
 loadCharts();
-
-showToast(
-"Expenses Loaded"
-);
-
-}
-
-}
-catch(error){
-
-console.error(error);
-
-}
 
 }
 
@@ -3036,3 +3007,15 @@ syncOfflineQueue();
 console.log(
 "Life Tracker Pro Part-4 Loaded"
 );
+
+function jsonResponse(obj){
+
+return ContentService
+.createTextOutput(
+JSON.stringify(obj)
+)
+.setMimeType(
+ContentService.MimeType.JSON
+);
+
+}
